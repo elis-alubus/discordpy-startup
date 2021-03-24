@@ -19,6 +19,9 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def create(ctx):
+    if not "運営" in [r.name for r in ctx.author.roles]:
+        await ctx.channel.send("権限がありません")
+        return
     roles = ctx.guild.roles
     categories = ctx.guild.categories
     category_names = [c.name for c in categories]
